@@ -1,0 +1,65 @@
+---
+interface Category {
+  id: string;
+  name: string;
+}
+interface Props {
+  categories: Category[];
+}
+const { categories } = Astro.props;
+---
+
+<nav
+  class="sticky top-0 z-10 bg-inkdeep/95 backdrop-blur border-b border-parchment/10"
+>
+  <ul class="flex gap-6 overflow-x-auto px-5 py-3 no-scrollbar">
+    {
+      categories.map((cat) => (
+        <li class="shrink-0">
+          <a
+            href={`#${cat.id}`}
+            data-cat-link={cat.id}
+            class="cat-link font-body text-sm text-sage border-b-2 border-transparent pb-1 transition-colors"
+          >
+            {cat.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  // Destaca a categoria visível durante o scroll (scroll spy simples)
+  const links = document.querySelectorAll<HTMLAnchorElement>("[data-cat-link]");
+  const sections = Array.from(links)
+    .map((link) => document.getElementById(link.dataset.catLink || ""))
+    .filter((el): el is HTMLElement => el !== null);
+
+  const setActive = (id: string) => {
+    links.forEach((link) => {
+      link.classList.toggle("is-active", link.dataset.catLink === id);
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

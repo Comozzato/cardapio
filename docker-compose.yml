@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: cardapio-app
+    ports:
+      - "3000:3000"
+    restart: unless-stopped

@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #16261C;
+}
+
+/* linha pontilhada clássica de cardápio impresso, ligando nome ao preço */
+.leader {
+  flex: 1 1 auto;
+  border-bottom: 2px dotted rgba(241, 233, 216, 0.35);
+  margin: 0 0.5rem;
+  height: 0.6em;
+  min-width: 1rem;
+}
+
+/* estado ativo do link de categoria na navegação */
+.cat-link.is-active {
+  color: #C97A2B;
+  border-color: #C97A2B;
+}

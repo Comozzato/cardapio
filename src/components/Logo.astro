@@ -1,0 +1,79 @@
+---
+interface Props {
+  size?: number;
+}
+const { size = 128 } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 200 200"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Selo Família Marmitex"
+>
+  <circle
+    cx="100"
+    cy="100"
+    r="97"
+    fill="#1B120D"
+    stroke="#F3E8D8"
+    stroke-width="3"></circle>
+  <circle
+    cx="100"
+    cy="100"
+    r="88"
+    fill="none"
+    stroke="#F3E8D8"
+    stroke-width="1"
+    opacity="0.55"></circle>
+
+  <!-- vapor -->
+  <g stroke="#E07B39" stroke-width="3.5" fill="none" stroke-linecap="round">
+    <path d="M82 58 q6 -9 0 -18" opacity="0.85"></path>
+    <path d="M100 58 q6 -9 0 -18"></path>
+    <path d="M118 58 q6 -9 0 -18" opacity="0.85"></path>
+  </g>
+
+  <!-- caneca -->
+  <g
+    stroke="#E07B39"
+    stroke-width="4"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M68 66 h58 v34 a16 16 0 0 1 -16 16 H84 a16 16 0 0 1 -16 -16 Z"
+    ></path>
+    <path d="M126 74 h10 a11 11 0 0 1 0 22 h-10"></path>
+  </g>
+
+  <text
+    x="100"
+    y="140"
+    font-family="Yesteryear, cursive"
+    font-size="30"
+    fill="#F3E8D8"
+    text-anchor="middle">Família</text
+  >
+  <text
+    x="100"
+    y="164"
+    font-family="Yesteryear, cursive"
+    font-size="30"
+    fill="#F3E8D8"
+    text-anchor="middle">Marmitex</text
+  >
+
+  <text
+    x="100"
+    y="180"
+    font-family="'Work Sans', sans-serif"
+    font-size="8"
+    letter-spacing="3"
+    fill="#F3E8D8"
+    opacity="0.85"
+    text-anchor="middle">RESTAURANTE</text
+  >
+</svg>

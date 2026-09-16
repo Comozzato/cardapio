@@ -1,0 +1,30 @@
+---
+interface Props {
+  name: string;
+  description?: string;
+  price: number;
+}
+const { name, description, price } = Astro.props;
+
+const formattedPrice = price.toLocaleString("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+});
+---
+
+<li class="py-4">
+  <div class="flex items-baseline">
+    <span class="font-display text-lg text-parchment">{name}</span>
+    <span class="leader" aria-hidden="true"></span>
+    <span class="font-display text-lg text-amber shrink-0"
+      >{formattedPrice}</span
+    >
+  </div>
+  {
+    description && (
+      <p class="mt-1 text-sm text-sage leading-relaxed max-w-md">
+        {description}
+      </p>
+    )
+  }
+</li>

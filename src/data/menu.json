@@ -1,0 +1,92 @@
+{
+  "restaurant": {
+    "name": "Família Marmitex",
+    "tagline": "Marmitex com cardápio variado todos os dias",
+    "address": "Rua Livorno, 223 - Pagani",
+    "phone": "(48) 98449-0270",
+    "whatsapp": "https://wa.me/5548984490270",
+    "delivery": "Delivery, retirada ou almoço no local"
+  },
+  "categories": [
+    {
+      "id": "marmitex",
+      "name": "Marmitex do dia",
+      "items": [
+        {
+          "name": "Marmitex executivo",
+          "description": "Arroz, feijão preto, batata frita e proteína do dia — cardápio variado todos os dias",
+          "price": 28.00
+        },
+        {
+          "name": "Marmitex carne de panela",
+          "description": "Carne desfiada ao molho, arroz, feijão preto e farofa",
+          "price": 32.00
+        }
+      ]
+    },
+    {
+      "id": "porcoes",
+      "name": "Porções",
+      "items": [
+        {
+          "name": "Batata frita",
+          "description": "Porção generosa, sequinha e crocante",
+          "price": 35.00
+        },
+        {
+          "name": "Carne na chapa",
+          "description": "Fatias grelhadas na chapa com cebola",
+          "price": 48.00
+        }
+      ]
+    },
+    {
+      "id": "chopp-cerveja",
+      "name": "Chopp & Cervejas",
+      "items": [
+        {
+          "name": "Chopp 300ml",
+          "description": "Gelado, servido na hora",
+          "price": 9.00
+        },
+        {
+          "name": "Chopp 500ml",
+          "description": "Gelado, servido na hora",
+          "price": 14.00
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "name": "Drinks",
+      "items": [
+        {
+          "name": "Gin tônica",
+          "description": "Gin premium, água tônica e toque de frutas vermelhas",
+          "price": 26.00
+        },
+        {
+          "name": "Caipirinha",
+          "description": "Limão, açúcar e destilado à sua escolha",
+          "price": 18.00
+        }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "name": "Bebidas",
+      "items": [
+        {
+          "name": "Refrigerante lata",
+          "description": "Guaraná, cola ou laranja",
+          "price": 7.00
+        },
+        {
+          "name": "Água mineral",
+          "description": "Com ou sem gás — 500ml",
+          "price": 5.00
+        }
+      ]
+    }
+  ]
+}
