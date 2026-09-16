@@ -3,52 +3,88 @@ interface Category {
   id: string;
   name: string;
 }
+
 interface Props {
   categories: Category[];
 }
+
 const { categories } = Astro.props;
 ---
 
 <nav
-  class="sticky top-0 z-10 bg-inkdeep/95 backdrop-blur border-b border-parchment/10"
+  class="sticky top-0 z-10 border-b border-parchment/10 bg-inkdeep/95 backdrop-blur-md"
 >
-  <ul class="flex gap-6 overflow-x-auto px-5 py-3 no-scrollbar">
-    {
-      categories.map((cat) => (
-        <li class="shrink-0">
-          <a
-            href={`#${cat.id}`}
-            data-cat-link={cat.id}
-            class="cat-link font-body text-sm text-sage border-b-2 border-transparent pb-1 transition-colors"
-          >
-            {cat.name}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="relative">
+    <!-- Gradiente indicando scroll horizontal -->
+    <div
+      class="pointer-events-none absolute right-0 top-0 z-10 h-full w-8 bg-gradient-to-l from-inkdeep to-transparent"
+    ></div>
+
+    <ul
+      class="no-scrollbar flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 py-3 pr-8"
+    >
+      {
+        categories.map((cat) => (
+          <li class="shrink-0 snap-start">
+            <a
+              href={`#${cat.id}`}
+              data-cat-link={cat.id}
+              class="cat-link inline-flex min-h-10 items-center rounded-full border border-parchment/10 px-4 py-2 font-body text-sm font-medium text-sage transition-all duration-200 active:scale-95"
+            >
+              {cat.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </nav>
 
 <script>
-  // Destaca a categoria visível durante o scroll (scroll spy simples)
-  const links = document.querySelectorAll<HTMLAnchorElement>("[data-cat-link]");
+  const links =
+    document.querySelectorAll<HTMLAnchorElement>("[data-cat-link]");
+
   const sections = Array.from(links)
-    .map((link) => document.getElementById(link.dataset.catLink || ""))
-    .filter((el): el is HTMLElement => el !== null);
+    .map((link) =>
+      document.getElementById(link.dataset.catLink || "")
+    )
+    .filter(
+      (el): el is HTMLElement => el !== null
+    );
 
   const setActive = (id: string) => {
     links.forEach((link) => {
-      link.classList.toggle("is-active", link.dataset.catLink === id);
+      const active = link.dataset.catLink === id;
+
+      link.classList.toggle("is-active", active);
+
+      if (active) {
+        link.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      }
     });
   };
 
   const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActive(entry.target.id);
-      });
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort(
+          (a, b) =>
+            b.intersectionRatio - a.intersectionRatio
+        );
+
+      if (visible.length > 0) {
+        setActive(visible[0].target.id);
+      }
     },
-    { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
+    {
+      rootMargin: "-25% 0px -65% 0px",
+      threshold: [0, 0.25, 0.5, 0.75],
+    }
   );
 
   sections.forEach((section) => observer.observe(section));
@@ -58,8 +94,15 @@ const { categories } = Astro.props;
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  .cat-link.is-active {
+    background-color: #c97a2b;
+    border-color: #c97a2b;
+    color: #f1e9d8;
   }
 </style>
