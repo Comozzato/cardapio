@@ -1,19 +1,26 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{astro,html,js,jsx,ts,tsx,md,mdx}'],
+  content: ["./src/**/*.{astro,html,js,jsx,ts,tsx,md,mdx}"],
   theme: {
     extend: {
       colors: {
-        ink: '#16261C',      // fundo principal, verde-oliva quase preto
-        inkdeep: '#0F1A13',  // fundo mais escuro (header/nav)
-        parchment: '#F1E9D8',// texto claro / papel
-        amber: '#C97A2B',    // acento principal
-        sage: '#8A9A82',     // texto secundário sobre fundo escuro
-        char: '#241D14',     // texto escuro (não usado sobre fundo escuro)
+        // Fundos
+        ink: "#3A2A20", // marrom café principal
+        inkdeep: "#241914", // marrom bem escuro para header/nav
+
+        // Textos
+        parchment: "#F4E8D2", // creme/bege claro
+        sage: "#B8A58C", // bege acinzentado para textos secundários
+
+        // Destaque
+        amber: "#D8892B", // laranja queimado/dourado
+
+        // Texto escuro
+        char: "#2A1B14", // marrom quase preto
       },
       fontFamily: {
-        display: ['"Fraunces"', 'ui-serif', 'serif'],
-        body: ['"Work Sans"', 'ui-sans-serif', 'sans-serif'],
+        display: ['"Fraunces"', "ui-serif", "serif"],
+        body: ['"Work Sans"', "ui-sans-serif", "sans-serif"],
       },
     },
   },
